@@ -9,8 +9,8 @@ import lombok.*;
 public class Koala {
     private int id;
     private String name;
-    private double weight;
     private double sleepHour;
+    private double weight;
     private String gender;
 }
 

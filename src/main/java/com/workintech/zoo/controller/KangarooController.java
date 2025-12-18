@@ -46,7 +46,12 @@ public class KangarooController {
     @PostMapping("/")
     public Kangaroo addKangaroo(@RequestBody Kangaroo kangaroo)
     {
-        Kangaroo toAdd = new Kangaroo(kangaroo.getId(), kangaroo.getName(), kangaroo.getHeight(), kangaroo.getWeight(), kangaroo.getGender(), kangaroo.isAggressive());
+        Kangaroo toAdd = new Kangaroo(kangaroo.getId(),
+                kangaroo.getName(),
+                kangaroo.getHeight(),
+                kangaroo.getWeight(),
+                kangaroo.getGender(),
+                kangaroo.getIsAggressive());
         this.kangaroos.put(kangaroo.getId(), toAdd);
         return toAdd;
     }
@@ -61,7 +66,7 @@ public class KangarooController {
         if(!this.kangaroos.containsKey(id)) {
             throw new ZooException("There are no kangaroos with Id such that: " + id, HttpStatus.NOT_FOUND);
         }
-        Kangaroo newKangaroo = new Kangaroo(id, kangaroo.getName(), kangaroo.getHeight(), kangaroo.getWeight(), kangaroo.getGender(), kangaroo.isAggressive());
+        Kangaroo newKangaroo = new Kangaroo(id, kangaroo.getName(), kangaroo.getHeight(), kangaroo.getWeight(), kangaroo.getGender(), kangaroo.getIsAggressive());
         this.kangaroos.put(id, newKangaroo);
         return newKangaroo;
 
