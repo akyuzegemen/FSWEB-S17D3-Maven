@@ -7,10 +7,10 @@ import lombok.*;
 @Getter
 @Setter
 public class Kangaroo {
-    private int id;
+    private Integer id;
     private String name;
-    private double height;
-    private double weight;
+    private Double height;
+    private Double weight;
     private String gender;
     private boolean isAggressive;
 
@@ -18,7 +18,7 @@ public class Kangaroo {
         return isAggressive;
     }
 
-    public void setIsAggressive(boolean aggressive) {
-        isAggressive = aggressive;
+    public void setIsAggressive(boolean bool) {
+        this.isAggressive = bool;
     }
 }

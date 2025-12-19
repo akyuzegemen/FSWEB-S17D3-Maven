@@ -23,14 +23,14 @@ public class KangarooController {
         this.kangaroos = new HashMap<>();
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Kangaroo> getAllKangaroos()
     {
         return this.kangaroos.values().stream().toList();
     }
 
     @GetMapping("/{id}")
-    public Kangaroo getKangarooById(@PathVariable int id)
+    public Kangaroo getKangarooById(@PathVariable("id") Integer id)
     {
         if(id <= 0)
         {
@@ -43,21 +43,35 @@ public class KangarooController {
         return this.kangaroos.get(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public Kangaroo addKangaroo(@RequestBody Kangaroo kangaroo)
     {
-        Kangaroo toAdd = new Kangaroo(kangaroo.getId(),
-                kangaroo.getName(),
-                kangaroo.getHeight(),
-                kangaroo.getWeight(),
-                kangaroo.getGender(),
-                kangaroo.getIsAggressive());
-        this.kangaroos.put(kangaroo.getId(), toAdd);
-        return toAdd;
+        if(kangaroo.getId() == null)
+        {
+            throw new ZooException("Id cannot be null", HttpStatus.BAD_REQUEST);
+        }
+        if(kangaroo.getName() == null)
+        {
+            throw new ZooException("Name cannot be null", HttpStatus.BAD_REQUEST);
+        }
+        if(kangaroo.getWeight() == null)
+        {
+            throw new ZooException("Weight cannot be null", HttpStatus.BAD_REQUEST);
+        }
+        if(kangaroo.getHeight() == null)
+        {
+            throw new ZooException("Height cannot be null", HttpStatus.BAD_REQUEST);
+        }
+        if(kangaroo.getGender() == null)
+        {
+            throw new ZooException("Gender cannot be null", HttpStatus.BAD_REQUEST);
+        }
+        this.kangaroos.put(kangaroo.getId(), kangaroo);
+        return kangaroo;
     }
 
     @PutMapping("/{id}")
-    public Kangaroo updateKangaroo(@PathVariable int id, @RequestBody Kangaroo kangaroo)
+    public Kangaroo updateKangaroo(@PathVariable("id") Integer id, @RequestBody Kangaroo kangaroo)
     {
         if(id <= 0)
         {
@@ -75,7 +89,7 @@ public class KangarooController {
 
 
     @DeleteMapping("/{id}")
-    public Kangaroo deleteKangarooById(@PathVariable int id)
+    public Kangaroo deleteKangarooById(@PathVariable("id") Integer id)
     {
         if(id <= 0)
         {

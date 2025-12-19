@@ -20,14 +20,14 @@ public class KoalaController {
         this.koalas = new HashMap<>();
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Koala> getAllKoalas()
     {
         return this.koalas.values().stream().toList();
     }
 
     @GetMapping("/{id}")
-    public Koala getKoalaById(@PathVariable int id)
+    public Koala getKoalaById(@PathVariable("id") Integer id)
     {
         if(id <= 0)
         {
@@ -40,7 +40,7 @@ public class KoalaController {
         return this.koalas.get(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public Koala addKoala(@RequestBody Koala koala)
     {
         Koala newKoala = new Koala(koala.getId(), koala.getName(), koala.getWeight(), koala.getSleepHour(), koala.getGender());
@@ -49,7 +49,7 @@ public class KoalaController {
     }
 
     @PutMapping("/{id}")
-    public Koala updateKoala(@PathVariable int id, @RequestBody Koala koala)
+    public Koala updateKoala(@PathVariable("id") Integer id, @RequestBody Koala koala)
     {
         if(id <= 0)
         {
@@ -65,7 +65,7 @@ public class KoalaController {
     }
 
     @DeleteMapping("/{id}")
-    public Koala deleteKoalaById(@PathVariable int id)
+    public Koala deleteKoalaById(@PathVariable("id") Integer id)
     {
         if(id <= 0)
         {

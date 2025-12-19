@@ -7,10 +7,10 @@ import lombok.*;
 @NoArgsConstructor
 @Data
 public class Koala {
-    private int id;
+    private Integer id;
     private String name;
-    private double sleepHour;
-    private double weight;
+    private Double sleepHour;
+    private Double weight;
     private String gender;
 }
 
